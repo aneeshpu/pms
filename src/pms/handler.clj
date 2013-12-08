@@ -1,6 +1,8 @@
 (ns pms.handler
   (:use compojure.core
-        pms.views)
+        pms.views
+        ring.velocity.core)
+
   (:require [compojure.handler :as handler]
             [compojure.route :as route]))
 

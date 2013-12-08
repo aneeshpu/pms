@@ -1,10 +1,6 @@
 (ns pms.views
-  (:use [hiccup core page]))
+  (:use [hiccup core page]
+        ring.velocity.core))
 
 (defn index-page []
-  (html5
-    [:head
-     [:title "Hello Doctor"]
-     (include-css "/css/style.css")]
-    [:body
-     [:h1 "Hello Doctor"]]))
+  (render "index.vm" :name "Doctor"))
