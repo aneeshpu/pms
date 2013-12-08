@@ -1,13 +1,13 @@
 (ns pms.handler
   (:use compojure.core
         pms.views
-        ring.velocity.core)
+        pms.controller.patient)
 
   (:require [compojure.handler :as handler]
             [compojure.route :as route]))
 
 (defroutes app-routes
-  (GET "/" [] (index-page))
+  (GET "/" [] (create "Captain America" 120))
   (route/resources "/")
   (route/not-found "Not Found"))
 
