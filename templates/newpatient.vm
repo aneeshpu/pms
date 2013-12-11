@@ -1,0 +1,13 @@
+<html>
+<head>
+    <title>
+        New Patient
+    </title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css"
+</head>
+
+<body>
+                   <p>Name:${name}</p>
+                   <p>Age:${age}</p>
+</body>
+</html>

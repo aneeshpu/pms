@@ -7,7 +7,8 @@
             [compojure.route :as route]))
 
 (defroutes app-routes
-  (GET "/" [] (create "Captain America" 120))
+  (GET "/patient" [] (create "Captain America" 120))
+  (POST "/wtf" {params :params} (new-patient params))
   (route/resources "/")
   (route/not-found "Not Found"))
 
