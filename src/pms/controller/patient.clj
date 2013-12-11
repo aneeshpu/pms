@@ -3,4 +3,4 @@
 
 (defn create
   [name age]
-  (render "index.vm" :name name))
+  (render "index.vm" :name name :age age))
