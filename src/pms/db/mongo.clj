@@ -11,4 +11,6 @@
 (defn insert
   [documents & rest]
   (connect-db)
-  (monger-coll/insert documents (assoc (apply hash-map rest) :id (ObjectId.))))
+  (monger-coll/insert documents
+    (assoc (apply hash-map rest)
+      :id (ObjectId.))))
