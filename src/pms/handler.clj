@@ -1,6 +1,5 @@
 (ns pms.handler
   (:use compojure.core
-        ;;pms.views
         pms.controller.patient)
 
   (:require [compojure.handler :as handler]
