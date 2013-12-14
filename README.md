@@ -1,6 +1,6 @@
 # pms
 
-FIXME
+A simple system to keep track of patients and the history of their treatment. Something that I am building for my dad. As simple as that.
 
 ## Prerequisites
 
