@@ -2,6 +2,10 @@
   (:use ring.velocity.core)
   (:require [pms.domain.patient :as patient]))
 
+(defn welcome
+  []
+  (render "welcome.vm"))
+
 (defn create
   [name age]
   (render "index.vm" :name name :age age))

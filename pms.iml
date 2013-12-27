@@ -11,11 +11,18 @@
     </content>
     <orderEntry type="jdk" jdkName="1.7" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="Leiningen: com.novemberain:monger:1.5.0" level="project" />
     <orderEntry type="library" name="Leiningen: compojure:compojure:1.1.6" level="project" />
     <orderEntry type="library" name="Leiningen: javax.servlet:servlet-api:2.5" level="project" />
     <orderEntry type="library" name="Leiningen: org.clojure:clojure:1.5.1" level="project" />
     <orderEntry type="library" name="Leiningen: ring-mock:ring-mock:0.1.5" level="project" />
     <orderEntry type="library" name="Leiningen: ring.velocity:ring.velocity:0.1.2" level="project" />
+    <orderEntry type="library" name="Leiningen: clojurewerkz:support:0.15.0" level="project" />
+    <orderEntry type="library" name="Leiningen: com.novemberain:validateur:1.4.0" level="project" />
+    <orderEntry type="library" name="Leiningen: org.mongodb:mongo-java-driver:2.11.0" level="project" />
+    <orderEntry type="library" name="Leiningen: ragtime:ragtime.core:0.3.2" level="project" />
+    <orderEntry type="library" name="Leiningen: com.google.guava:guava:14.0.1" level="project" />
+    <orderEntry type="library" name="Leiningen: org.clojure:tools.cli:0.2.2" level="project" />
     <orderEntry type="library" name="Leiningen: clout:clout:1.1.0" level="project" />
     <orderEntry type="library" name="Leiningen: org.clojure:core.incubator:0.1.0" level="project" />
     <orderEntry type="library" name="Leiningen: org.clojure:tools.macro:0.1.0" level="project" />

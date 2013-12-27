@@ -5,5 +5,4 @@
 (defn save
   [& {:keys [name age]}]
   (println "inside patient/save")
-  ;;(pms-mongo/connect-db)
   (pms-mongo/insert "patients" :name name :age age))
