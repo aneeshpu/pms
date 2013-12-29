@@ -1,0 +1,17 @@
+<html lang="en" ng-app="pms">
+    <head>
+        <title>Welcome to PMS</title>
+        <link rel="stylesheet" type="text/css" href="/css/style.css"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular-route.js"></script>
+        <script src="controllers.js"></script>
+    </head>
+
+    <body ng-controller="NewPatientCtrl">
+        <h1>Welcome to PMS</h1>
+        <p>Hello {{patient}}</p>
+
+        <div ng-view>
+        </div>
+    </body>
+</html>
