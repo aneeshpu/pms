@@ -8,7 +8,11 @@ pms.config(['$routeProvider', function ($routeProvider) {
     }).when('/default', {
             templateUrl: '/partials/default.html',
             controller: 'NewPatientCtrl'
-        }).otherwise({
+        }).when('/savePatient', {
+
+            templateUrl: '/partials/'
+        })
+        .otherwise({
             redirectTo: '/default'
         });
 
@@ -17,4 +21,8 @@ pms.config(['$routeProvider', function ($routeProvider) {
 pms.controller('NewPatientCtrl', function ($scope) {
 
     $scope.patient = "Superman";
+
+    $scope.linkClicked = function () {
+        alert($scope.age);
+    }
 });
