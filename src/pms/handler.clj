@@ -4,7 +4,8 @@
   (:require [compojure.handler :as handler]
             [compojure.route :as route]
             [ring.util.response :as response]
-            [pms.controller.patient :as p-cont]))
+            [pms.controller.patient :as p-cont]
+            [ring.middleware.json :as middleware]))
 
 (defroutes app-routes
   (GET "/" [] (p-cont/welcome))
@@ -17,4 +18,8 @@
 
 
 (def app
-  (handler/site app-routes))
+  (->
+    (handler/site app-routes)
+    (middleware/wrap-json-body)
+    (middleware/wrap-json-params)
+    (middleware/wrap-json-response)))
