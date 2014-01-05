@@ -8,8 +8,7 @@
     </head>
 
     <body ng-controller="NewPatientCtrl">
-        <h1>Welcome to PMS</h1>
-        <p>Hello {{patient}}</p>
+        <h1>Patient Management System</h1>
 
         <div ng-view>
         </div>

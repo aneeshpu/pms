@@ -22,3 +22,10 @@
   (println params)
   (save-patient :name (:name params) :age (:age params))
   (render "newpatient.vm" :name (:name params) :age (:age params)))
+
+(defn retrieve-patient
+  [id]
+  (println "get-patient " id)
+  (let [p (patient/retrieve id)]
+    (println "Inside get-patient" p)
+  (render "newpatient.vm" :name (:name p) :age (:age p))))

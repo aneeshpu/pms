@@ -9,8 +9,9 @@
 
 (defroutes app-routes
   (GET "/" [] (p-cont/welcome))
-  (GET "/patient" [] (p-cont/create "Captain America" 120))
+  (GET "/patient/:id" [id] (p-cont/retrieve-patient id))
   (POST "/wtf" {params :params} (p-cont/new-patient params))
+
   (route/resources "/")
   (GET ["/:filename" :filename #".*"] [filename]
     (response/file-response filename {:root "./public"}))

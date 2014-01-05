@@ -14,3 +14,9 @@
   (monger-coll/insert documents
     (assoc (apply hash-map rest)
       :id (ObjectId.))))
+
+(defn retrieve "Retrieves a mongo object by Id"
+  [documents name]
+  (connect-db)
+  (println "inside retrieve" name)
+  (monger-coll/find-one-as-map documents {:name name}))
