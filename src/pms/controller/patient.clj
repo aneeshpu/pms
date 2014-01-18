@@ -26,6 +26,6 @@
 (defn retrieve-patient
   [id]
   (println "get-patient " id)
-  (let [p (patient/retrieve id)]
-    (println "Inside get-patient" p)
-  (render "newpatient.vm" :name (:name p) :age (:age p))))
+  (let [{:keys [name age]} (patient/retrieve id)]
+    (format "-->Inside get-patient. Found patient with name:%s and age:%s" name age)
+    {:body {:name name :age age}}))

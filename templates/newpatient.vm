@@ -1,13 +1,25 @@
-<html>
-<head>
-    <title>
-        New Patient
-    </title>
-    <link rel="stylesheet" type="text/css" href="/css/style.css"
-</head>
+<html lang="en" ng-app="pms">
+    <head>
+        <title>Patient</title>
+        <!--link rel="stylesheet" type="text/css" href="/css/style.css"/-->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular-route.js"></script>
+        <script src="controllers.js"></script>
+    </head>
 
-<body>
-                   <p>Name:${name}</p>
-                   <p>Age:${age}</p>
-</body>
+    <body ng-controller="NewPatientCtrl">
+        <div>
+            <div>
+                <p>Name:${name}</p>
+
+                <p>Age:${age}</p>
+
+                <a href="#/addCase">Add Case</a>
+            </div>
+
+            <div ng-view>
+
+            </div>
+        </div>
+    </body>
 </html>
