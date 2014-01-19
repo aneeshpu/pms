@@ -57,6 +57,7 @@ pms.controller('NewPatientCtrl', function ($scope, $http, patientService) {
             $scope.name = data.name;
             $scope.age = data.age;
             $scope.id = data.id;
+            $scope.complaints = data.complaints;
 
             patientService.saveCurrentPatient(data.name, data.age, data.id);
         });

@@ -27,9 +27,11 @@
 (defn retrieve-patient
   [id]
   (println "get-patient " id)
-  (let [{:keys [name age id]} (patient/retrieve id)]
-    (format "-->Inside get-patient with .toString. Found patient with name:%s and age:%s" name age)
-    {:body {:name name :age age :id (.toString id)}}))
+  (let [p (patient/retrieve id)]
+    (println "------------>Inside get-patient with .toString. Found patient " p)
+    {:body (assoc
+             (dissoc p :_id )
+             :id (.toString (:id p)))}))
 
 (defn add-problem
   [complaint]
