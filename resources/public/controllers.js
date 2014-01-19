@@ -1,5 +1,22 @@
 var pms = angular.module('pms', ['ngRoute']);
 
+pms.factory('patientService', function () {
+
+    return {
+        saveCurrentPatient: function (name, age) {
+            this.name = name;
+            this.age = age;
+        },
+
+        getCurrentPatient: function getCurrentPatient() {
+            return {
+                name: this.name,
+                age: this.age
+            }
+        }
+    }
+});
+
 pms.config(['$routeProvider', function ($routeProvider) {
 
     $routeProvider.when('/new', {
@@ -26,7 +43,7 @@ pms.config(['$routeProvider', function ($routeProvider) {
 
 }]);
 
-pms.controller('NewPatientCtrl', function ($scope, $http) {
+pms.controller('NewPatientCtrl', function ($scope, $http, patientService) {
 
     $scope.linkClicked = function () {
 
@@ -37,6 +54,10 @@ pms.controller('NewPatientCtrl', function ($scope, $http) {
         $http.get("/patient/" + $scope.patientName).success(function (data) {
             $scope.name = data.name;
             $scope.age = data.age;
+
+            patientService.saveCurrentPatient(data.name, data.age);
         });
     }
+
+    $scope.currentPatient = patientService.getCurrentPatient();
 });
