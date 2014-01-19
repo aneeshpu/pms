@@ -27,5 +27,8 @@
     (println "+++++++" p)
     (comment monger-coll/update documents {:id (ObjectId. id)} {:complaint complaint} :upsert true)
     (monger-coll/update documents {:id (ObjectId. id)}
-      (assoc p :complaints [complaint]))
+      (assoc p :complaints
+        (conj
+          (:complaints p)
+          complaint)))
     p))
