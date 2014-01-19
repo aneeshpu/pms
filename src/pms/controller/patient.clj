@@ -1,6 +1,7 @@
 (ns pms.controller.patient
   (:use ring.velocity.core)
-  (:require [pms.domain.patient :as patient]))
+  (:require [pms.domain.patient :as patient]
+            [pms.db.mongo :as pms-mongo]))
 
 (defn welcome
   []
@@ -26,6 +27,10 @@
 (defn retrieve-patient
   [id]
   (println "get-patient " id)
-  (let [{:keys [name age]} (patient/retrieve id)]
-    (format "-->Inside get-patient. Found patient with name:%s and age:%s" name age)
-    {:body {:name name :age age}}))
+  (let [{:keys [name age id]} (patient/retrieve id)]
+    (format "-->Inside get-patient with .toString. Found patient with name:%s and age:%s" name age)
+    {:body {:name name :age age :id (.toString id)}}))
+
+(defn add-problem
+  [complaint]
+  (pms-mongo/update "patients" (:id complaint) (:complaint complaint)))

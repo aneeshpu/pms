@@ -20,3 +20,12 @@
   (connect-db)
   (println "inside retrieve" name)
   (monger-coll/find-one-as-map documents {:name name}))
+
+(defn update [documents id complaint]
+  (connect-db)
+  (let [p (monger-coll/find-one-as-map documents {:id (ObjectId. id)})]
+    (println "+++++++" p)
+    (comment monger-coll/update documents {:id (ObjectId. id)} {:complaint complaint} :upsert true)
+    (monger-coll/update documents {:id (ObjectId. id)}
+      (assoc p :complaints [complaint]))
+    p))

@@ -12,3 +12,4 @@
   (let [p (pms-mongo/retrieve "patients" id)]
     (println "inside pms.domain.patient.retrieve" p)
     p))
+
