@@ -25,10 +25,9 @@
   (connect-db)
   (let [p (monger-coll/find-one-as-map documents {:id (ObjectId. id)})]
     (println "+++++++" p)
-    (comment monger-coll/update documents {:id (ObjectId. id)} {:complaint complaint} :upsert true)
     (monger-coll/update documents {:id (ObjectId. id)}
       (assoc p :complaints
         (conj
           (:complaints p)
-          complaint)))
+          {:complaint complaint :id (ObjectId.)})))
     p))
