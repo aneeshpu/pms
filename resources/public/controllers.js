@@ -3,18 +3,12 @@ var pms = angular.module('pms', ['ngRoute']);
 pms.factory('patientService', function () {
 
     return {
-        saveCurrentPatient: function (name, age, id) {
-            this.name = name;
-            this.age = age;
-            this.id = id;
+        saveCurrentPatient: function (patient) {
+            this.patient = patient;
         },
 
         getCurrentPatient: function getCurrentPatient() {
-            return {
-                name: this.name,
-                age: this.age,
-                id: this.id
-            }
+            return this.patient;
         }
     }
 });
@@ -59,7 +53,7 @@ pms.controller('NewPatientCtrl', function ($scope, $http, patientService) {
             $scope.id = data.id;
             $scope.complaints = data.complaints;
 
-            patientService.saveCurrentPatient(data.name, data.age, data.id);
+            patientService.saveCurrentPatient(data);
         });
     }
 
