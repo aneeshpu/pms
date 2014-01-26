@@ -57,10 +57,8 @@ pms.controller('NewPatientCtrl', function ($scope, $http, patientService) {
         });
     }
 
-    $scope.currentPatient = patientService.getCurrentPatient();
-
     $scope.createCase = function () {
 
-        $http.post("/patients/" + $scope.currentPatient.id + "/cases", {id: $scope.currentPatient.id, complaint: $scope.complaint});
+        $http.post("/patients/" + patientService.getCurrentPatient().id + "/cases", {id: patientService.getCurrentPatient().id, complaint: $scope.complaint});
     }
 });
