@@ -24,15 +24,20 @@
   (save-patient :name (:name params) :age (:age params))
   (render "newpatient.vm" :name (:name params) :age (:age params)))
 
+(defn replace-object-id-with-string
+  [obj]
+  (assoc (dissoc obj :_id) :id (.toString (:id obj))))
+
 (defn retrieve-patient
   [id]
   (println "get-patient " id)
   (let [p (patient/retrieve id)]
     (println "------------>Inside get-patient with .toString. Found patient " p)
-    {:body (assoc
-             (dissoc p :_id )
-             :id (.toString (:id p)))}))
+    {:body (replace-object-id-with-string
+             (assoc p :complaints
+               (map replace-object-id-with-string (:complaints p))))}))
 
 (defn add-problem
   [complaint]
   (pms-mongo/update "patients" (:id complaint) (:complaint complaint)))
+
