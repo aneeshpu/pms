@@ -12,6 +12,7 @@
   (GET "/patient/:id" [id] (p-cont/retrieve-patient id))
   (POST "/wtf" {params :params} (p-cont/new-patient params))
   (POST "/patients/:id/cases" {params :params} (p-cont/add-problem params))
+  (POST "/patients/:id/cases/:complaint-id" {params :params} (p-cont/add-session :id :complaint-id params))
 
   (route/resources "/")
   (GET ["/:filename" :filename #".*"] [filename]

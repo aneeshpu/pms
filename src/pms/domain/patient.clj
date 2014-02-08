@@ -1,5 +1,7 @@
 (ns pms.domain.patient
-  (:require [pms.db.mongo :as pms-mongo]))
+  (:require [pms.db.mongo :as pms-mongo])
+
+  (:import [org.bson.types ObjectId]))
 
 
 (defn save
@@ -12,4 +14,13 @@
   (let [p (pms-mongo/retrieve "patients" id)]
     (println "inside pms.domain.patient.retrieve" p)
     p))
+
+(defn find-complaint
+  [complaint-id patient]
+  (filter
+    #(=
+       (ObjectId. complaint-id)
+       (:id %))
+    (:complaints patient)))
+
 

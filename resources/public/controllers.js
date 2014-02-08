@@ -30,6 +30,10 @@ pms.config(['$routeProvider', function ($routeProvider) {
             templateUrl: 'partials/add-case.html',
             controller: 'NewPatientCtrl'
 
+        }).when('/addSession', {
+            templateUrl: 'partials/view-session.html',
+            controller: 'NewPatientCtrl'
+
         }).when('/search', {
             templateUrl: 'partials/search-patient.html',
             controller: 'NewPatientCtrl'
@@ -39,7 +43,7 @@ pms.config(['$routeProvider', function ($routeProvider) {
 
 }]);
 
-pms.controller('NewPatientCtrl', function ($scope, $http, patientService) {
+pms.controller('NewPatientCtrl', function ($scope, $http, patientService, $location) {
 
     $scope.linkClicked = function () {
 
@@ -57,8 +61,21 @@ pms.controller('NewPatientCtrl', function ($scope, $http, patientService) {
         });
     }
 
-    $scope.createCase = function () {
+    //Used by add-case. Do not remove.
+    $scope.currentPatient = patientService.getCurrentPatient();
 
+    $scope.createCase = function () {
+        //templatize the URL
+        //TODO:Change /cases to /complaints
         $http.post("/patients/" + patientService.getCurrentPatient().id + "/cases", {id: patientService.getCurrentPatient().id, complaint: $scope.complaint});
+    }
+
+    $scope.addSession = function () {
+        $http.post("/patients/" + patientService.getCurrentPatient().id + "/cases/" + $scope.currentComplaint.id, {diagnosis: $scope.diagnosis, medicine: $scope.medicine});
+    }
+
+    $scope.viewSession = function (complaint) {
+        $scope.currentComplaint = complaint;
+        $location.path("addSession");
     }
 });
