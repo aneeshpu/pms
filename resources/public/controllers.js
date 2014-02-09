@@ -37,6 +37,11 @@ pms.config(['$routeProvider', function ($routeProvider) {
         }).when('/search', {
             templateUrl: 'partials/search-patient.html',
             controller: 'NewPatientCtrl'
+
+        }).when('/viewPatient',{
+            templateUrl: 'partials/view-patient.html',
+            controller: 'NewPatientCtrl'
+
         }).otherwise({
             redirectTo: '/default'
         });
@@ -74,5 +79,14 @@ pms.controller('NewPatientCtrl', function ($scope, $http, patientService, $locat
         $scope.currentComplaint = complaint;
         $http.get("")
         $location.path("addSession");
+    }
+
+    $scope.viewPatient = function(patient){
+        patientService.saveCurrentPatient(patient);
+        $location.path("viewPatient");
+    }
+
+    $scope.getCurrentPatient = function(){
+        $scope.patient = patientService.getCurrentPatient();
     }
 });

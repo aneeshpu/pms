@@ -1,0 +1,14 @@
+<div ng-init="getCurrentPatient()">
+    <p>
+        Name: {{patient.name}}
+    </p>
+
+    <p>
+        Age: {{patient.age}}
+    </p>
+
+    <h2>Complaints</h2>
+    <li ng-repeat="complaint in patient.complaints">
+        <a href="" ng-click="viewSession(complaint)">{{complaint.complaint}}</a>
+    </li>
+</div>

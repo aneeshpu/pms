@@ -3,7 +3,7 @@
     <a href="" ng-click="searchPatient()">Search</a>
 
     <li ng-repeat="patient in patients">
-        <a href="">{{patient.name}}</a>
+        <a href="" ng-click="viewPatient(patient)">{{patient.name}}</a>
         {{patient.age}}
     </li>
 
