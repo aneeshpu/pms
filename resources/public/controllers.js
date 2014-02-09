@@ -9,7 +9,16 @@ pms.factory('patientService', function () {
 
         getCurrentPatient: function getCurrentPatient() {
             return this.patient;
+        },
+
+        saveCurrentComplaint: function (complaint){
+            this.complaint = complaint;
+        },
+
+        getCurrentComplaint: function(){
+            return this.complaint;
         }
+
     }
 });
 
@@ -75,9 +84,10 @@ pms.controller('NewPatientCtrl', function ($scope, $http, patientService, $locat
         $http.post("/patients/" + patientService.getCurrentPatient().id + "/cases/" + $scope.currentComplaint.id, {diagnosis: $scope.diagnosis, medicine: $scope.medicine});
     }
 
-    $scope.viewSession = function (complaint) {
-        $scope.currentComplaint = complaint;
-        $http.get("")
+    $scope.viewSession = function (patient, complaint) {
+        patientService.saveCurrentComplaint(complaint);
+        patientService.saveCurrentPatient(patient);
+
         $location.path("addSession");
     }
 
@@ -88,5 +98,10 @@ pms.controller('NewPatientCtrl', function ($scope, $http, patientService, $locat
 
     $scope.getCurrentPatient = function(){
         $scope.patient = patientService.getCurrentPatient();
+    }
+
+    $scope.initComplaint = function(){
+        $scope.currentComplaint = patientService.getCurrentComplaint();
+        $scope.currentPatient = patientService.getCurrentPatient();
     }
 });
