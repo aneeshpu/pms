@@ -2,21 +2,22 @@
     Patient Name:<input type="text" ng-model="patientName">
     <a href="" ng-click="searchPatient()">Search</a>
 
-    <p>
-        Name:{{name}}
-    </p>
+    <li ng-repeat="patient in patients">
+        <a href="">{{patient.name}}</a>
+        {{patient.age}}
+    </li>
 
-    <p>
-        Age:{{age}}
-    </p>
+    <!--<p>-->
+        <!--Age:{{age}}-->
+    <!--</p>-->
 
-    <h2>Complaints</h2>
-    <ul>
-        <li ng-repeat="complaint in complaints">
-            <a href="" ng-click="viewSession(complaint)">{{complaint.complaint}}</a>
-        </li>
-    </ul>
+    <!--<h2>Complaints</h2>-->
+    <!--<ul>-->
+        <!--<li ng-repeat="complaint in complaints">-->
+            <!--<a href="" ng-click="viewSession(complaint)">{{complaint.complaint}}</a>-->
+        <!--</li>-->
+    <!--</ul>-->
 
-    <a href="#/addCase">New Complaint</a>
+    <!--<a href="#/addCase">New Complaint</a>-->
 
 </div>

@@ -10,8 +10,8 @@
   (pms-mongo/insert "patients" :name name :age age))
 
 (defn retrieve "Retrieves a patient by ObjectId"
-  [id]
-  (let [p (pms-mongo/retrieve "patients" id)]
+  [name]
+  (let [p (pms-mongo/retrieve "patients" name)]
     (println "inside pms.domain.patient.retrieve" p)
     p))
 

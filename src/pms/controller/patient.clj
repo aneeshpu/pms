@@ -28,13 +28,18 @@
   [obj]
   (assoc (dissoc obj :_id ) :id (.toString (:id obj))))
 
+(defn strip-ids
+  [patient]
+  (replace-object-id-with-string
+    (assoc patient :complaints
+      (map replace-object-id-with-string (:complaints patient)))))
+
 (defn retrieve-patient
-  [id]
-  (println "get-patient " id)
-  (let [p (patient/retrieve id)]
-    (println "------------>Inside get-patient with .toString. Found patient " p)
-    {:body (replace-object-id-with-string
-             (assoc p :complaints (map replace-object-id-with-string (:complaints p))))}))
+  [name]
+  (println "get-patient " name)
+  (let [patients (patient/retrieve name)]
+    (println "------------>Inside get-patient with .toString. Found patients " patients)
+    {:body (map strip-ids patients)}))
 
 (defn add-problem
   [complaint]

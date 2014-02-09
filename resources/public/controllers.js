@@ -52,11 +52,7 @@ pms.controller('NewPatientCtrl', function ($scope, $http, patientService, $locat
 
     $scope.searchPatient = function () {
         $http.get("/patient/" + $scope.patientName).success(function (data) {
-            $scope.name = data.name;
-            $scope.age = data.age;
-            $scope.id = data.id;
-            $scope.complaints = data.complaints;
-
+            $scope.patients = data
             patientService.saveCurrentPatient(data);
         });
     }
@@ -76,6 +72,7 @@ pms.controller('NewPatientCtrl', function ($scope, $http, patientService, $locat
 
     $scope.viewSession = function (complaint) {
         $scope.currentComplaint = complaint;
+        $http.get("")
         $location.path("addSession");
     }
 });

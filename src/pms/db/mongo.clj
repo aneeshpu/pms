@@ -19,7 +19,7 @@
   [documents name]
   (connect-db)
   (println "inside retrieve" name)
-  (monger-coll/find-one-as-map documents {:name name}))
+  (monger-coll/find-maps documents {:name name}))
 
 (defn update [documents id complaint]
   (connect-db)
