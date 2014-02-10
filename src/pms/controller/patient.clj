@@ -30,28 +30,31 @@
 
 (defn strip-ids
   [patient]
-  (replace-object-id-with-string
-    (assoc patient :complaints
-      (map replace-object-id-with-string (:complaints patient)))))
+  (replace-object-id-with-string patient))
 
 (defn retrieve-patient
   [name]
   (println "get-patient " name)
   (let [patients (patient/retrieve name)]
     (println "------------>Inside get-patient with .toString. Found patients " patients)
-    {:body (map strip-ids patients)}))
+    {:body (map replace-object-id-with-string patients)}))
 
 (defn add-problem
   [complaint]
   (pms-mongo/update "patients" (:id complaint) (:complaint complaint)))
 
 (defn add-session
-  [patient-id complaint-id session]
-  (println "add-session with patient-id " patient-id ", complaint-id " complaint-id " and session " session)
-  (let [p (pms-mongo/retrieve "patients" patient-id)]
-    (let [c (patient/find-complaint complaint-id p)]
-      (assoc c :sessions (conj
-                           (:sessions c)
-                           {:date (java.util.Date.) :diagnosis (:diagnosis session) :medicine (:medicine session)}
-                           ))))
+  [session]
+  (println "------------------------------params" session)
+  (println "add-session with patient-id " (:id session) ", complaint-id " (:complaint-id session) ", diagnosis" (:diagnosis session) ", medicine:" (:medicine session))
+  (let [p (pms-mongo/get-patient-by-id "patients" (:id session))]
+    (let [c (patient/find-complaint (:complaint-id session) p)]
+      (println "-------------__>Found-complaint:" c)
+      (pms-mongo/update
+        "patients"
+        (:id session)
+        (assoc c :sessions
+          (conj
+            (:sessions c)
+            {:date (java.util.Date.) :diagnosis (:diagnosis session) :medicine (:medicine session)})))))
   )

@@ -15,7 +15,15 @@
     (assoc (apply hash-map rest)
       :id (ObjectId.))))
 
-(defn retrieve "Retrieves a mongo object by Id"
+(defn get-patient-by-id
+  "Retrieves a single patient by id"
+  [documents id]
+  (connect-db)
+  (println "new version")
+  (monger-coll/find-one-as-map documents {:id (ObjectId. id)}))
+
+(defn get-patient-by-name
+  "Retrieves a sequence of patients by name"
   [documents name]
   (connect-db)
   (println "inside retrieve" name)
@@ -27,8 +35,7 @@
     (println "+++++++" p)
     (monger-coll/update documents {:id (ObjectId. id)}
       (assoc p :complaints
-        (conj
-          (:complaints p)
-          {:complaint complaint :id (ObjectId.)})))
+        (let [id (.toString (ObjectId.))]
+        (assoc (:complaints p) id {:complaint complaint :id id}))))
     p))
 

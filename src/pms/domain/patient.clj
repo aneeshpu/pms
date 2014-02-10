@@ -11,16 +11,14 @@
 
 (defn retrieve "Retrieves a patient by ObjectId"
   [name]
-  (let [p (pms-mongo/retrieve "patients" name)]
+  (let [p (pms-mongo/get-patient-by-name "patients" name)]
     (println "inside pms.domain.patient.retrieve" p)
     p))
 
 (defn find-complaint
+  "Finds a complaint that matches complaint-id"
   [complaint-id patient]
-  (filter
-    #(=
-       (ObjectId. complaint-id)
-       (:id %))
-    (:complaints patient)))
+  (println "------------>pms.domain.patient/find-complaint" complaint-id patient)
+  (get (:complaints patient) complaint-id))
 
 
