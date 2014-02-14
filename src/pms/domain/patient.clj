@@ -9,7 +9,7 @@
   (println "inside patient/save")
   (pms-mongo/insert "patients" :name name :age age))
 
-(defn retrieve "Retrieves a patient by ObjectId"
+(defn retrieve "Retrieves a patient by name"
   [name]
   (let [p (pms-mongo/get-patient-by-name "patients" name)]
     (println "inside pms.domain.patient.retrieve" p)
@@ -19,6 +19,6 @@
   "Finds a complaint that matches complaint-id"
   [complaint-id patient]
   (println "------------>pms.domain.patient/find-complaint" complaint-id patient)
-  (get (:complaints patient) complaint-id))
+  (get (:complaints patient) (keyword complaint-id)))
 
 
