@@ -1,0 +1,35 @@
+.btn{
+
+    padding: 5px 16px;
+    font-size: 18px;
+    line-height: 1.33;
+    color: #fff;
+
+
+    text-align:center;
+    vertical-align:middle;
+
+    cursor: pointer;
+
+    background-color:#428bca;
+    border-radius:6px;
+
+    border: 1px solid transparent;
+
+}
+
+a {
+    text-decoration: none;
+}
+
+.box{
+    padding: 10px 164px;
+}
+
+.heading {
+    font-size: 50px;
+}
+
+.banner-box {
+    padding-left: 32%;
+}

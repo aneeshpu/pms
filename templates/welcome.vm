@@ -1,16 +1,18 @@
 <html lang="en" ng-app="pms">
     <head>
         <title>Welcome to PMS</title>
-        <!--link rel="stylesheet" type="text/css" href="/css/style.css"/-->
+        <link rel="stylesheet" type="text/css" href="/css/pms.css"/>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular-route.js"></script>
         <script src="controllers.js"></script>
     </head>
 
-    <body ng-controller="NewPatientCtrl">
-        <h1>Patient Management System</h1>
+    <body ng-controller="NewPatientCtrl" class="banner-box">
+        <div class="">
+            <span class="heading">Patient Management System</span>
 
-        <div ng-view>
+            <div ng-view>
+            </div>
         </div>
     </body>
 </html>
