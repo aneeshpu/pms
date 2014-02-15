@@ -8,7 +8,7 @@
     </head>
 
     <body ng-controller="NewPatientCtrl" class="banner-box">
-        <div class="">
+        <div class="container">
             <span class="heading">Patient Management System</span>
 
             <div ng-view>

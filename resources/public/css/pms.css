@@ -1,18 +1,18 @@
-.btn{
+.button {
 
     padding: 5px 16px;
     font-size: 18px;
     line-height: 1.33;
     color: #fff;
+    margin: 10px;
 
-
-    text-align:center;
-    vertical-align:middle;
+    text-align: center;
+    vertical-align: middle;
 
     cursor: pointer;
 
-    background-color:#428bca;
-    border-radius:6px;
+    background-color: #428bca;
+    border-radius: 6px;
 
     border: 1px solid transparent;
 
@@ -20,9 +20,10 @@
 
 a {
     text-decoration: none;
+    margin: 10px;
 }
 
-.box{
+.box {
     padding: 10px 164px;
 }
 
@@ -32,4 +33,25 @@ a {
 
 .banner-box {
     padding-left: 32%;
+}
+
+.container {
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    float: left;
+}
+
+input {
+    height: 34px;
+    width: 350px;
+    padding: 5px 12px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 18px;
+    line-height: 1.42857143;
+    border: 1px solid black;
+    border-radius: 4px;
+
 }
