@@ -22,7 +22,7 @@
   (println "inside new-patient with params")
   (println params)
   (save-patient :name (:name params) :age (:age params))
-  (render "newpatient.vm" :name (:name params) :age (:age params)))
+  {:body params})
 
 (defn replace-object-id-with-string
   [obj]

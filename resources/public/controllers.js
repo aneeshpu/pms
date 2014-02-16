@@ -61,7 +61,9 @@ pms.controller('NewPatientCtrl', function ($scope, $http, patientService, $locat
 
     $scope.createPatient = function () {
 
-        $http.post("patients", {name: $scope.name, age: $scope.age, problem: $scope.problem});
+        $http.post("patients", {name: $scope.name, age: $scope.age, problem: $scope.problem}).success(function(data){
+            $scope.viewPatient(data);
+        });
     }
 
     $scope.searchPatient = function () {
