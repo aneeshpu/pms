@@ -16,6 +16,9 @@
   (println "saving patient with name " name " and age " age)
   (patient/save :name name :age age))
 
+(defn replace-object-id-with-string
+  [obj]
+  (assoc (dissoc obj :_id ) :id (.toString (:id obj))))
 
 (defn new-patient
   [params]
@@ -24,10 +27,6 @@
   {:body
    (replace-object-id-with-string
      (save-patient :name (:name params) :age (:age params)))})
-
-(defn replace-object-id-with-string
-  [obj]
-  (assoc (dissoc obj :_id ) :id (.toString (:id obj))))
 
 (defn strip-ids
   [patient]
@@ -42,9 +41,10 @@
 
 (defn add-problem
   [complaint]
-  (pms-mongo/update "patients" (:id complaint) (:complaint complaint)))
+  {:body (let [res (pms-mongo/update "patients" (:id complaint) (:complaint complaint))]
+           (replace-object-id-with-string (:complaint res)))})
 
-(defn add-session-to-complaint [complaint session]
+   (defn add-session-to-complaint [complaint session]
   (assoc
     complaint
     :sessions (conj (:sessions complaint) {:date (java.util.Date.) :diagnosis (:diagnosis session) :medicine (:medicine session)})))

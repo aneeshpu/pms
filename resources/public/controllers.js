@@ -79,7 +79,9 @@ pms.controller('NewPatientCtrl', function ($scope, $http, patientService, $locat
     $scope.createCase = function () {
         //templatize the URL
         //TODO:Change /cases to /complaints
-        $http.post("/patients/" + patientService.getCurrentPatient().id + "/cases", {id: patientService.getCurrentPatient().id, complaint: $scope.complaint});
+        $http.post("/patients/" + patientService.getCurrentPatient().id + "/cases", {id: patientService.getCurrentPatient().id, complaint: $scope.complaint}).success(function (data){
+            $scope.viewSession(patientService.getCurrentPatient(), data);
+        });
     }
 
     $scope.addSession = function () {

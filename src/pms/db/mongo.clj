@@ -31,17 +31,15 @@
 
 (defn update [documents id complaint]
   (connect-db)
-  (let [p (monger-coll/find-one-as-map documents {:id (ObjectId. id)})]
+  (let [p (monger-coll/find-one-as-map documents {:id (ObjectId. id)})
+        new-complaint-id (.toString (ObjectId.))
+        c {:complaint complaint :id new-complaint-id}]
+
     (println "+++++++" p)
-    (monger-coll/update documents {:id (ObjectId. id)}
-      (assoc
-        p
-        :complaints
-        (let [id (.toString (ObjectId.))]
-          (assoc
-            (:complaints p)
-            id
-            {:complaint complaint :id id})))) p))
+      (monger-coll/update documents {:id (ObjectId. id)}
+        (assoc p :complaints
+          (assoc (:complaints p) new-complaint-id c)))
+    {:patient p :complaint c}))
 
 
 (defn update-patient [documents id p]
