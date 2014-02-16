@@ -21,8 +21,9 @@
   [params]
   (println "inside new-patient with params")
   (println params)
-  (save-patient :name (:name params) :age (:age params))
-  {:body params})
+  {:body
+   (replace-object-id-with-string
+     (save-patient :name (:name params) :age (:age params)))})
 
 (defn replace-object-id-with-string
   [obj]

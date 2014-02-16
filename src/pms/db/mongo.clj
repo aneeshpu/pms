@@ -11,9 +11,9 @@
 (defn insert
   [documents & rest]
   (connect-db)
-  (monger-coll/insert documents
-    (assoc (apply hash-map rest)
-      :id (ObjectId.))))
+    (let [p (assoc (apply hash-map rest) :id (ObjectId.))]
+      (monger-coll/insert documents p)
+      p))
 
 (defn get-patient-by-id
   "Retrieves a single patient by id"
