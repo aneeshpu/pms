@@ -10,7 +10,7 @@
 (defroutes app-routes
   (GET "/" [] (p-cont/welcome))
   (GET "/patient/:name" [name] (p-cont/retrieve-patient name))
-  (POST "/wtf" {params :params} (p-cont/new-patient params))
+  (POST "/patients" {params :params} (p-cont/new-patient params))
   (POST "/patients/:id/cases" {params :params} (p-cont/add-problem params))
   (POST "/patients/:id/cases/:complaint-id" {params :params} (p-cont/add-session params))
 
