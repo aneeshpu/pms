@@ -51,6 +51,10 @@ pms.config(['$routeProvider', function ($routeProvider) {
             templateUrl: 'partials/view-patient.html',
             controller: 'NewPatientCtrl'
 
+        }).when('/sessionSaved', {
+            templateUrl: 'partials/session-saved.html',
+            controller: 'NewPatientCtrl'
+
         }).otherwise({
             redirectTo: '/default'
         });
@@ -85,7 +89,10 @@ pms.controller('NewPatientCtrl', function ($scope, $http, patientService, $locat
     }
 
     $scope.addSession = function () {
-        $http.post("/patients/" + patientService.getCurrentPatient().id + "/cases/" + $scope.currentComplaint.id, {diagnosis: $scope.diagnosis, medicine: $scope.medicine});
+        $http.post("/patients/" + patientService.getCurrentPatient().id + "/cases/" + $scope.currentComplaint.id, {diagnosis: $scope.diagnosis, medicine: $scope.medicine}).success(function (data){
+            patientService.saveCurrentPatient(data);
+            $location.path("viewPatient");
+        });
     }
 
     $scope.viewSession = function (patient, complaint) {

@@ -42,6 +42,6 @@
     {:patient p :complaint c}))
 
 
-(defn update-patient [documents id p]
+(defn update-patient [documents id patient]
   (connect-db)
-  (monger-coll/update documents {:id (ObjectId. id)} p))
+  (monger-coll/update documents {:id (ObjectId. id)} patient))
