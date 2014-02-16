@@ -59,7 +59,7 @@ pms.config(['$routeProvider', function ($routeProvider) {
 
 pms.controller('NewPatientCtrl', function ($scope, $http, patientService, $location) {
 
-    $scope.linkClicked = function () {
+    $scope.createPatient = function () {
 
         $http.post("wtf", {name: $scope.name, age: $scope.age, problem: $scope.problem});
     }
