@@ -5,9 +5,9 @@
 
 
 (defn save
-  [& {:keys [name age]}]
+  [& {:keys [name age address]}]
   (println "inside patient/save")
-  (pms-mongo/insert "patients" :name name :age age))
+  (pms-mongo/insert "patients" :name name :age age :address address))
 
 (defn retrieve "Retrieves a patient by name"
   [name]

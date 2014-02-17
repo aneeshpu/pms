@@ -12,9 +12,9 @@
   (render "index.vm" :name name :age age))
 
 (defn save-patient
-  [& {:keys [name age]}]
+  [& {:keys [name age address]}]
   (println "saving patient with name " name " and age " age)
-  (patient/save :name name :age age))
+  (patient/save :name name :age age :address address))
 
 (defn replace-object-id-with-string
   [obj]
@@ -26,7 +26,7 @@
   (println params)
   {:body
    (replace-object-id-with-string
-     (save-patient :name (:name params) :age (:age params)))})
+     (save-patient :name (:name params) :age (:age params) :address (:address params)))})
 
 (defn strip-ids
   [patient]
