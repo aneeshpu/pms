@@ -7,9 +7,12 @@
         <script src="controllers.js"></script>
     </head>
 
-    <body ng-controller="NewPatientCtrl" class="banner-box">
-        <div class="container">
-            <span class="heading">Patient Management System</span>
+    <body ng-controller="NewPatientCtrl">
+        <nav>
+            <h3 class="heading">Patient Management System</h3>
+        </nav>
+
+        <div class="container banner-box">
 
             <div ng-view>
             </div>
