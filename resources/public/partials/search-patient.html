@@ -5,7 +5,8 @@
     <ul class="search-results">
         <li ng-repeat="patient in patients">
             <a href="" ng-click="viewPatient(patient)">{{patient.name}}</a>
-            {{patient.age}}
+            <span>,{{patient.age}}</span>
+            <span>,{{patient.address}}</span>
         </li>
     </ul>
 

@@ -7,6 +7,10 @@
         Age: {{patient.age}}
     </p>
 
+    <p>
+        Address: {{patient.address}}
+    </p>
+
     <h2>Complaints</h2>
     <li ng-repeat="complaint in patient.complaints">
         <a href="" ng-click="viewSession(patient, complaint)">{{complaint.complaint}}</a>
