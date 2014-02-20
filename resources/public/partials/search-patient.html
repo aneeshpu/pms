@@ -1,8 +1,5 @@
 <div>
-    <input class="data-input" placeholder="Name" type="text" ng-model="patientName">
-    <a class="button" href="" ng-click="searchPatient()">Search</a>
-
-    <ul class="search-results">
+    <ul class="search-results" ng-init="getCurrentPatient()">
         <li ng-repeat="patient in patients">
             <a href="" ng-click="viewPatient(patient)">{{patient.name}}</a>
             <span>,{{patient.age}}</span>

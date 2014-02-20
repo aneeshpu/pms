@@ -78,6 +78,8 @@ pms.controller('NewPatientCtrl', function ($scope, $http, patientService, $locat
             $scope.patients = data
             patientService.saveCurrentPatient(data);
         });
+
+        $location.path("search");
     }
 
     //Used by add-case. Do not remove.
