@@ -18,8 +18,6 @@
                 <input class="search-box" placeholder="Name" type="text" ng-model="patientName">
             </div>
 
-
-
         </div>
 
         <div class="container banner-box">
