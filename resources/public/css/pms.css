@@ -38,7 +38,7 @@ a {
     float: left;
 }
 
-input {
+.data-input {
     height: 34px;
     width: 350px;
     padding: 5px 12px;
@@ -71,44 +71,55 @@ nav {
     width: 100%;
 }
 
-.heading {
-    font-size: 20px;
+.nav-bar{
     padding: 5 3 0 3;
-    float:left;
-    margin:1px;
     height:30px;
     width: 100%;
     background-color: black;
+}
+
+.title {
+    font-size: 20px;
+
+    float:left;
+    margin:1px;
+
     color: white;
 }
+
+.search-box-container{
+    float:right;
+}
+
 
 .search-box {
     height: 25px;
     width: 200px;
     padding: 2px 12px;
-    margin-top: 5px;
-    margin-bottom: 5px;
     font-size: 18px;
     line-height: 1.42857143;
     border: 1px solid black;
     border-radius: 4px;
+    float:right;
 
 }
 
 .search-button {
+    float:right;
     height: 20px;
     padding: 2px 5px;
 
-    color: #fff;
-    margin: 5px;
+    color: black;
+    margin-left: 5px;
+    margin-top: 0px;
 
     text-align: center;
     vertical-align: middle;
 
     cursor: pointer;
 
-    background-color: #428bca;
-    border-radius: 6px;
+    background-color: forestgreen;
+    border-radius: 1px;
 
     border: 1px solid transparent;
 

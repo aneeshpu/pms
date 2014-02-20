@@ -8,13 +8,17 @@
     </head>
 
     <body ng-controller="NewPatientCtrl">
-        <div>
-            <div class="heading">
+        <div class="nav-bar">
+            <div class="title">
                 <span>Patient Management System</span>
             </div>
 
-#*            <input class="search-box" placeholder="Name" type="text" ng-model="patientName">
-            <a class="search-button" href="" ng-click="searchPatient()">Search</a>*#
+            <div class="search-box-container">
+                <a class="search-button" href="" ng-click="searchPatient()">Search</a>
+                <input class="search-box" placeholder="Name" type="text" ng-model="patientName">
+            </div>
+
+
 
         </div>
 
