@@ -1,3 +1,4 @@
+<h2> Patient Details</h2>
 <div ng-init="getCurrentPatient()">
     <p>
         Name: {{patient.name}}
@@ -11,7 +12,7 @@
         Address: {{patient.address}}
     </p>
 
-    <h2>Complaints</h2>
+    <h3>Complaints</h3>
     <li ng-repeat="complaint in patient.complaints">
         <a href="" ng-click="viewSession(patient, complaint)">{{complaint.complaint}}</a>
     </li>
