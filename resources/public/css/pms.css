@@ -27,11 +27,6 @@ a {
     padding: 10px 164px;
 }
 
-.heading {
-    font-size: 20px;
-    padding: 2px 10px;
-}
-
 .banner-box {
     padding-left: 30%;
     padding-right: 30%;
@@ -54,11 +49,11 @@ input {
     border: 1px solid black;
     border-radius: 4px;
 }
+
 ul{
     margin:10px;
     padding:10px;
 }
-
 li {
     list-style-type:none;
 
@@ -74,4 +69,48 @@ nav {
     background-color: black;
     color:white;
     width: 100%;
+}
+
+.heading {
+    font-size: 20px;
+    padding: 5 3 0 3;
+    float:left;
+    margin:1px;
+    height:30px;
+    width: 100%;
+    background-color: black;
+    color: white;
+}
+
+.search-box {
+    height: 25px;
+    width: 200px;
+    padding: 2px 12px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: 18px;
+    line-height: 1.42857143;
+    border: 1px solid black;
+    border-radius: 4px;
+
+}
+
+.search-button {
+    height: 20px;
+    padding: 2px 5px;
+
+    color: #fff;
+    margin: 5px;
+
+    text-align: center;
+    vertical-align: middle;
+
+    cursor: pointer;
+
+    background-color: #428bca;
+    border-radius: 6px;
+
+    border: 1px solid transparent;
+
+    font-size:15px;
 }
