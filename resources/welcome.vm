@@ -1,0 +1,29 @@
+<html lang="en" ng-app="pms">
+    <head>
+        <title>Welcome to PMS</title>
+        <link rel="stylesheet" type="text/css" href="/css/pms.css"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular-route.js"></script>
+        <script src="controllers.js"></script>
+    </head>
+
+    <body ng-controller="NewPatientCtrl">
+        <div class="nav-bar">
+            <div class="title">
+                <span>Patient Management System</span>
+            </div>
+
+            <div class="search-box-container">
+                <a class="search-button" href="" ng-click="searchPatient()">Search</a>
+                <input class="search-box" placeholder="Name" type="text" ng-model="patientName">
+            </div>
+
+        </div>
+
+        <div class="container banner-box">
+
+            <div ng-view>
+            </div>
+        </div>
+    </body>
+</html>

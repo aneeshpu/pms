@@ -5,7 +5,7 @@
 
 (defn welcome
   []
-  (render "welcome.vm"))
+  (render "/welcome.vm"))
 
 (defn create
   [name age]
