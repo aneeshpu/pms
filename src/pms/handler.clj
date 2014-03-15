@@ -23,6 +23,6 @@
 (def app
   (->
     (handler/site app-routes)
-    (middleware/wrap-json-body)
     (middleware/wrap-json-params)
+;    (middleware/wrap-json-body)
     (middleware/wrap-json-response)))

@@ -29,7 +29,7 @@ pms.config(['$routeProvider', function ($routeProvider) {
         controller: 'NewPatientCtrl'
 
     }).when('/default', {
-            templateUrl: '/partials/default.html',
+            templateUrl: 'partials/default.html',
             controller: 'NewPatientCtrl'
 
         }).when('/savePatient', {
@@ -74,7 +74,7 @@ pms.controller('NewPatientCtrl', function ($scope, $http, patientService, $locat
     }
 
     $scope.searchPatient = function () {
-        $http.get("/patient/" + $scope.patientName).success(function (data) {
+        $http.get("patient/" + $scope.patientName).success(function (data) {
             $scope.patients = data
             patientService.saveCurrentPatient(data);
         });
@@ -88,13 +88,13 @@ pms.controller('NewPatientCtrl', function ($scope, $http, patientService, $locat
     $scope.createCase = function () {
         //templatize the URL
         //TODO:Change /cases to /complaints
-        $http.post("/patients/" + patientService.getCurrentPatient().id + "/cases", {id: patientService.getCurrentPatient().id, complaint: $scope.complaint}).success(function (data){
+        $http.post("patients/" + patientService.getCurrentPatient().id + "/cases", {id: patientService.getCurrentPatient().id, complaint: $scope.complaint}).success(function (data){
             $scope.viewSession(patientService.getCurrentPatient(), data);
         });
     }
 
     $scope.addSession = function () {
-        $http.post("/patients/" + patientService.getCurrentPatient().id + "/cases/" + $scope.currentComplaint.id, {diagnosis: $scope.diagnosis, medicine: $scope.medicine}).success(function (data){
+        $http.post("patients/" + patientService.getCurrentPatient().id + "/cases/" + $scope.currentComplaint.id, {diagnosis: $scope.diagnosis, medicine: $scope.medicine}).success(function (data){
             patientService.saveCurrentPatient(data);
             $location.path("viewPatient");
         });
