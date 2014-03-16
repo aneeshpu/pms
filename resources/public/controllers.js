@@ -65,8 +65,11 @@ pms.controller('NewPatientCtrl', function ($scope, $http, patientService, $locat
 
     $scope.createPatient = function () {
 
-        $http.post("patients", {name: $scope.name, age: $scope.age, problem: $scope.problem, address: $scope.address}).success(function (data) {
+        $http.post("patients", {name: $scope.name, age: $scope.age, problem: $scope.problem, address: $scope.address})
+            .success(function (data) {
                 $scope.viewPatient(data);
+            }).error(function (data) {
+                $scope.errMsg = data.message;
             });
     }
 
@@ -85,9 +88,12 @@ pms.controller('NewPatientCtrl', function ($scope, $http, patientService, $locat
     $scope.createCase = function () {
         //templatize the URL
         //TODO:Change /cases to /complaints
-        $http.post("patients/" + patientService.getCurrentPatient().id + "/cases", {id: patientService.getCurrentPatient().id, complaint: $scope.complaint}).success(function (data) {
-            $scope.viewSession(patientService.getCurrentPatient(), data);
-        });
+        $http.post("patients/" + patientService.getCurrentPatient().id + "/cases", {id: patientService.getCurrentPatient().id, complaint: $scope.complaint})
+            .success(function (data) {
+                $scope.viewSession(patientService.getCurrentPatient(), data);
+            }).error(function (data) {
+                $scope.errMsg = data.message;
+            });
     }
 
     $scope.addSession = function () {

@@ -20,10 +20,17 @@
   [obj]
   (assoc (dissoc obj :_id ) :id (.toString (:id obj))))
 
+(defn validate-patient [patient]
+  (if (or (nil? (:name patient))
+        (nil? (:age patient))
+        (nil? (:address patient)))
+    (throw (IllegalArgumentException. "Please enter name, age and address"))))
+
 (defn new-patient
   [params]
   (println "inside new-patient with params")
   (println params)
+  (validate-patient params)
   {:body
    (replace-object-id-with-string
      (save-patient :name (:name params) :age (:age params) :address (:address params)))})
@@ -39,8 +46,13 @@
     (println "------------>Inside get-patient with .toString. Found patients " patients)
     {:body (map replace-object-id-with-string patients)}))
 
+(defn validate-complaint [params]
+  (if (nil? (:complaint params))
+    (throw (IllegalArgumentException. "Please enter a complaint"))))
+
 (defn add-problem
   [complaint]
+  (validate-complaint complaint)
   {:body (let [res (pms-mongo/update "patients" (:id complaint) (:complaint complaint))]
            (replace-object-id-with-string (:complaint res)))})
 
@@ -55,10 +67,8 @@
     (assoc (:complaints p) (keyword (:id complaint)) (add-session-to-complaint complaint session))))
 
 (defn validate-session [session]
-  (println "==============================inside validate-session")
   (println (or (nil? (:diagnosis session)) (nil? (:medicine session))))
   (if (or (nil? (:diagnosis session)) (nil? (:medicine session)))
-;    (println "---->either diagnosis or medicine has not been entered")
     (throw (IllegalArgumentException. "Either diagnosis or medicine has not been entered"))))
 
 (defn add-session
