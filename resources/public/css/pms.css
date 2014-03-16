@@ -125,3 +125,8 @@ nav {
 
     font-size:15px;
 }
+
+.error-msg{
+    padding: 50 0 50 0;
+    color: red;
+}

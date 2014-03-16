@@ -11,11 +11,11 @@ pms.factory('patientService', function () {
             return this.patient;
         },
 
-        saveCurrentComplaint: function (complaint){
+        saveCurrentComplaint: function (complaint) {
             this.complaint = complaint;
         },
 
-        getCurrentComplaint: function(){
+        getCurrentComplaint: function () {
             return this.complaint;
         }
 
@@ -47,7 +47,7 @@ pms.config(['$routeProvider', function ($routeProvider) {
             templateUrl: 'partials/search-patient.html',
             controller: 'NewPatientCtrl'
 
-        }).when('/viewPatient',{
+        }).when('/viewPatient', {
             templateUrl: 'partials/view-patient.html',
             controller: 'NewPatientCtrl'
 
@@ -65,12 +65,9 @@ pms.controller('NewPatientCtrl', function ($scope, $http, patientService, $locat
 
     $scope.createPatient = function () {
 
-        $http.post("patients", {name: $scope.name
-            , age: $scope.age
-            , problem: $scope.problem
-            , address: $scope.address}).success(function(data){
-            $scope.viewPatient(data);
-        });
+        $http.post("patients", {name: $scope.name, age: $scope.age, problem: $scope.problem, address: $scope.address}).success(function (data) {
+                $scope.viewPatient(data);
+            });
     }
 
     $scope.searchPatient = function () {
@@ -88,18 +85,18 @@ pms.controller('NewPatientCtrl', function ($scope, $http, patientService, $locat
     $scope.createCase = function () {
         //templatize the URL
         //TODO:Change /cases to /complaints
-        $http.post("patients/" + patientService.getCurrentPatient().id + "/cases", {id: patientService.getCurrentPatient().id, complaint: $scope.complaint}).success(function (data){
+        $http.post("patients/" + patientService.getCurrentPatient().id + "/cases", {id: patientService.getCurrentPatient().id, complaint: $scope.complaint}).success(function (data) {
             $scope.viewSession(patientService.getCurrentPatient(), data);
         });
     }
 
     $scope.addSession = function () {
         $http.post("patients/" + patientService.getCurrentPatient().id + "/cases/" + $scope.currentComplaint.id, {diagnosis: $scope.diagnosis, medicine: $scope.medicine})
-            .success(function (data){
-            patientService.saveCurrentPatient(data);
-            $location.path("viewPatient");
-        }).error(function(data){
-            alert(data);
+            .success(function (data) {
+                patientService.saveCurrentPatient(data);
+                $location.path("viewPatient");
+            }).error(function (data) {
+                $scope.errMsg = data.message;
             });
     }
 
@@ -110,16 +107,16 @@ pms.controller('NewPatientCtrl', function ($scope, $http, patientService, $locat
         $location.path("addSession");
     }
 
-    $scope.viewPatient = function(patient){
+    $scope.viewPatient = function (patient) {
         patientService.saveCurrentPatient(patient);
         $location.path("viewPatient");
     }
 
-    $scope.getCurrentPatient = function(){
+    $scope.getCurrentPatient = function () {
         $scope.patient = patientService.getCurrentPatient();
     }
 
-    $scope.initComplaint = function(){
+    $scope.initComplaint = function () {
         $scope.currentComplaint = patientService.getCurrentComplaint();
         $scope.currentPatient = patientService.getCurrentPatient();
     }
