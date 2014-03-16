@@ -19,7 +19,6 @@
   "Retrieves a single patient by id"
   [documents id]
   (connect-db)
-  (println "new version")
   (monger-coll/find-one-as-map documents {:id (ObjectId. id)}))
 
 (defn get-patient-by-name

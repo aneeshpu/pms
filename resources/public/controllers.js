@@ -94,10 +94,13 @@ pms.controller('NewPatientCtrl', function ($scope, $http, patientService, $locat
     }
 
     $scope.addSession = function () {
-        $http.post("patients/" + patientService.getCurrentPatient().id + "/cases/" + $scope.currentComplaint.id, {diagnosis: $scope.diagnosis, medicine: $scope.medicine}).success(function (data){
+        $http.post("patients/" + patientService.getCurrentPatient().id + "/cases/" + $scope.currentComplaint.id, {diagnosis: $scope.diagnosis, medicine: $scope.medicine})
+            .success(function (data){
             patientService.saveCurrentPatient(data);
             $location.path("viewPatient");
-        });
+        }).error(function(data){
+            alert(data);
+            });
     }
 
     $scope.viewSession = function (patient, complaint) {

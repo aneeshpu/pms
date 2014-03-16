@@ -19,10 +19,19 @@
     (response/file-response filename {:root "./public"}))
   (route/not-found "Not Found"))
 
+(defn handle-exception
+  [handler]
+  (fn [request]
+    (try (let [res (handler request)]
+      res)
+      (catch IllegalArgumentException e
+        {:body {:message (.getMessage e)}
+         :status 500}
+        ))))
 
 (def app
   (->
     (handler/site app-routes)
     (middleware/wrap-json-params)
-;    (middleware/wrap-json-body)
+    (handle-exception)
     (middleware/wrap-json-response)))
