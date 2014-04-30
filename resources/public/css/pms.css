@@ -143,3 +143,7 @@ nav {
 .session-header{
     background-color:lightgray;
 }
+
+.diagnosis{
+    height: 500px;
+}
