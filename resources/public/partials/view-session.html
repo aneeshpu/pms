@@ -12,6 +12,21 @@
         Complaint:{{currentComplaint.complaint}}
     </p>
 
+    <table class="sessions-table">
+        <tr>
+            <th class="session-cell session-header">date</th>
+            <th class="session-cell session-header">diagnosis</th>
+            <th class="session-cell session-header">medicine</th>
+        </tr>
+
+        <tr ng-repeat="session in currentComplaint.sessions">
+            <td class="session-cell">{{session.date}}</td>
+            <td class="session-cell">{{session.diagnosis}}</td>
+            <td class="session-cell"> {{session.medicine}}</td>
+        </tr>
+
+    </table>
+
     <p>
         <input class="data-input" placeholder="Diagnosis" type="text" ng-model="diagnosis"/>
     </p>

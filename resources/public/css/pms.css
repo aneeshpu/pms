@@ -130,3 +130,16 @@ nav {
     padding: 50 0 50 0;
     color: red;
 }
+
+.session-cell{
+    padding: 20px;
+    border: 1px solid black;
+}
+
+.sessions-table{
+    border: 1px solid black;
+}
+
+.session-header{
+    background-color:lightgray;
+}

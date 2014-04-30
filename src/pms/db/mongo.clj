@@ -8,6 +8,7 @@
   (monger/connect!)
   (monger/set-db! (monger/get-db "pms")))
 
+
 (defn insert
   [documents & rest]
   (connect-db)
