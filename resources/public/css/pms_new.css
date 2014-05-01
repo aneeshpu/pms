@@ -1,0 +1,37 @@
+.starter-template{
+    padding: 70px 15px;
+}
+
+.session-cell{
+    padding: 20px;
+    border: 1px solid black;
+}
+
+.sessions-table{
+    border: 1px solid black;
+}
+
+.session-header{
+    background-color:lightgray;
+}
+
+.data-input {
+    height: 34px;
+    width: 350px;
+    padding: 5px 12px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 18px;
+    line-height: 1.42857143;
+    border: 1px solid black;
+    border-radius: 4px;
+}
+
+.search-results{
+    font-family:"Trebuchet MS", Helvetica, sans-serif;
+    font-size: 35px;
+}
+
+.tall-input{
+    height: 500px;
+}

@@ -147,3 +147,12 @@ nav {
 .tall-input{
     height: 500px;
 }
+
+.nav-menu{
+    list-style-type: css;
+}
+
+.nav-menu-item{
+    float:left;
+}
+
