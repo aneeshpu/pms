@@ -55,9 +55,13 @@ pms.config(['$routeProvider', function ($routeProvider) {
             templateUrl: 'partials/session-saved.html',
             controller: 'NewPatientCtrl'
 
+        }).when('/allpatients',{
+            templateUrl: 'partials/all-patients.html',
+            controller: 'NewPatientCtrl'
+
         }).otherwise({
             redirectTo: '/default'
-        });
+        })
 
 }]);
 
@@ -126,4 +130,38 @@ pms.controller('NewPatientCtrl', function ($scope, $http, patientService, $locat
         $scope.currentComplaint = patientService.getCurrentComplaint();
         $scope.currentPatient = patientService.getCurrentPatient();
     }
+
+    $scope.getPatients  = function(index){
+        $http.get("patients/" + index).success(function (data){
+            $scope.patients = data;
+        }).error(function (data){
+            $scope.errMsg = data.message;
+        });
+
+        $location.path("allpatients");
+
+    }
+
+    $scope.allPatients = function(){
+        $scope.searchIndex = 1;
+        $scope.getPatients($scope.searchIndex);
+    }
+
+    $scope.nextPatients = function(){
+        if($scope.searchIndex > 1 && $scope.patients.length == 0){
+            return;
+        }
+
+        $scope.searchIndex++;
+        $scope.getPatients($scope.searchIndex);
+    }
+
+    $scope.prevPatients = function(){
+        if($scope.searchIndex <= 1){
+            return;
+        }
+        $scope.searchIndex--;
+        $scope.getPatients($scope.searchIndex);
+    }
+
 });

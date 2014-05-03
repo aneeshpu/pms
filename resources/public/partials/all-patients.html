@@ -1,0 +1,12 @@
+<div>
+    <ul class="search-results" ng-init="getCurrentPatient()">
+        <li ng-repeat="patient in patients">
+            <a href="" ng-click="viewPatient(patient)">{{patient.name}}</a>
+            <span>,{{patient.age}}</span>
+            <span>,{{patient.address}}</span>
+        </li>
+    </ul>
+
+    <a class="btn btn-primary" href="" ng-click="prevPatients()">previous</a>
+    <a class="btn btn-primary" href="" ng-click="nextPatients()">next</a>
+</div>

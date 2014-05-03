@@ -1,6 +1,7 @@
 (ns pms.db.mongo
   (:require [monger.core :as monger]
-            [monger.collection :as monger-coll])
+            [monger.collection :as monger-coll]
+            [monger.query :as monger-q])
   (:import [org.bson.types ObjectId]))
 
 (defn connect-db
@@ -45,3 +46,9 @@
 (defn update-patient [documents id patient]
   (connect-db)
   (monger-coll/update documents {:id (ObjectId. id)} patient))
+
+(defn get-patients [index]
+  (connect-db)
+  (monger-q/with-collection "patients"
+    (monger-q/sort (array-map :date -1))
+    (monger-q/paginate :page (Integer/parseInt index) :per-page 5)))

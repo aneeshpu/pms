@@ -26,6 +26,9 @@
         (nil? (:address patient)))
     (throw (IllegalArgumentException. "Please enter name, age and address"))))
 
+(defn get-all-patients [index]
+  (pms-mongo/get-patients index))
+
 (defn new-patient
   [params]
   (println "inside new-patient with params")
