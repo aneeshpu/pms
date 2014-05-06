@@ -1,0 +1,39 @@
+<html lang="en" ng-app="pms">
+<head>
+    <title>Patient Management System</title>
+    <link rel="stylesheet" type="text/css" href="css/pms_new.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular-route.js"></script>
+    <script src="controllers.js"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+</head>
+<body ng-controller="NewPatientCtrl">
+
+
+<div class="container">
+    <form action="login" method="POST">
+        <div class="login-panel">
+            <div class="cred-container">
+                <input class="cred-box" type="text" name="username" placeholder="login"/>
+            </div>
+            <div class="cred-container">
+                <input class="cred-box" type="text" name="password" placeholder="password"/>
+            </div>
+            <div class="cred-container">
+                <input type="submit" class="button plain login-button" value="login"/>
+            </div>
+        </div>
+    </form>
+
+</div>
+
+</body>
+</html>

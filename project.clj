@@ -7,6 +7,7 @@
                  [javax.servlet/servlet-api "2.5"]
                  [ring-mock "0.1.5"]
                  [com.novemberain/monger "1.7.0"]
+                 [com.cemerick/friend "0.2.0"]
                  [ring/ring-json "0.2.0"]]
 
   :plugins [[lein-ring "0.8.10"]

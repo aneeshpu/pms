@@ -5,26 +5,28 @@
             [compojure.route :as route]
             [ring.util.response :as response]
             [pms.controller.patient :as p-cont]
+            [cemerick.friend :as friend]
+            (cemerick.friend [workflows :as workflows]
+              [credentials :as creds])
             [ring.middleware.json :as middleware]))
 
 (defroutes app-routes
-  (GET "/" [] (p-cont/welcome))
+  (GET "/" [] (friend/authorize #{::user} "" (p-cont/welcome)))
   (GET "/patient/:name" [name] (p-cont/retrieve-patient name))
   (GET "/patients/:index" [index] (p-cont/get-all-patients index))
   (POST "/patients" {params :params} (p-cont/new-patient params))
   (POST "/patients/:id/cases" {params :params} (p-cont/add-problem params))
   (POST "/patients/:id/cases/:complaint-id" {params :params} (p-cont/add-session params))
 
+  (GET "/login" [] (response/redirect "/login.html"))
   (route/resources "/")
-  (GET ["/:filename" :filename #".*"] [filename]
-    (response/file-response filename {:root "./public"}))
   (route/not-found "Not Found"))
 
 (defn handle-exception
   [handler]
   (fn [request]
     (try (let [res (handler request)]
-      res)
+           res)
       (catch IllegalArgumentException e
         {:body {:message (.getMessage e)}
          :status 500}
@@ -37,9 +39,18 @@
         (assoc res :body (map #(dissoc % :_id :id) (:body res)))
         res))))
 
+(def users {"root" {:username "root"
+                    :password (creds/hash-bcrypt "admin_password")
+                    :roles #{::admin}}
+
+            "drkpbal" {:username "drkpbal"
+                        :password (creds/hash-bcrypt "password")
+                        :roles #{::user}}})
+
 (def app
   (->
-    (handler/site app-routes)
+    (handler/site (friend/authenticate app-routes {:credential-fn (partial creds/bcrypt-credential-fn users)
+                                                   :workflows [(workflows/interactive-form)]}))
     (remove-object-id)
     (middleware/wrap-json-params)
     (handle-exception)
