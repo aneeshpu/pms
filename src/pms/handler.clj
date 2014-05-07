@@ -18,7 +18,7 @@
   (POST "/patients/:id/cases" {params :params} (p-cont/add-problem params))
   (POST "/patients/:id/cases/:complaint-id" {params :params} (p-cont/add-session params))
 
-  (GET "/login" [] (response/redirect "/login.html"))
+  (GET "/login" [] (response/redirect "login.html"))
   (route/resources "/")
   (route/not-found "Not Found"))
 

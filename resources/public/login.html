@@ -19,17 +19,24 @@
 
 
 <div class="container">
-    <form action="login" method="POST">
-        <div class="login-panel">
-            <div class="cred-container">
-                <input class="cred-box" type="text" name="username" placeholder="login"/>
+    <div class="jumbotron">
+        <h1>Patient Management System</h1>
+    </div>
+    <form action="login" method="POST" role="form">
+        <div class="row">
+            <div class="col-md-4"></div>
+        <div class="login-panel col-md-4">
+            <div class="input-group-lg form-group">
+                <input class="form-control " type="text" name="username" placeholder="login"/>
             </div>
-            <div class="cred-container">
-                <input class="cred-box" type="text" name="password" placeholder="password"/>
+            <div class="input-group-lg form-group">
+                <input class="form-control" type="password" name="password" placeholder="password"/>
             </div>
-            <div class="cred-container">
-                <input type="submit" class="button plain login-button" value="login"/>
+            <div class="input-group-lg form-group">
+                <input type="submit" class="btn btn-primary" value="login"/>
             </div>
+            </div>
+            <div class="col-md-4"></div>
         </div>
     </form>
 

@@ -1,10 +1,10 @@
 <div>
-    <ul class="search-results" ng-init="getCurrentPatient()">
-        <li ng-repeat="patient in patients">
-            <a href="" ng-click="viewPatient(patient)">{{patient.name}}</a>
-            <span>,{{patient.age}}</span>
-            <span>,{{patient.address}}</span>
-        </li>
-    </ul>
+    <table class="table table-striped" ng-init="getCurrentPatient()">
+        <tr ng-repeat="patient in patients">
+            <td> <a href="" ng-click="viewPatient(patient)">{{patient.name}}</a> </td>
+            <td><span>{{patient.age}}</span></td>
+            <td><span>{{patient.address}}</span></td>
+        </tr>
+    </table>
 
 </div>
