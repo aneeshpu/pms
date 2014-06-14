@@ -35,8 +35,9 @@
 (defn remove-object-id [handler]
   (fn [request]
     (let [res (handler request)]
+      (println "is this working at all " res)
       (if (and ((complement nil?) res) (map? res) (seq? (:body res)))
-        (assoc res :body (map #(dissoc % :_id :id) (:body res)))
+        (assoc res :body (map #(dissoc (assoc % :id (.toString (:id %))) :_id) (:body res)))
         res))))
 
 (def users {"root" {:username "root"
