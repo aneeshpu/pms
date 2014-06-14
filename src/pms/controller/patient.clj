@@ -84,5 +84,4 @@
       (println "------------->Found-complaint:" c)
       (let [complaints (associate-complaint-with-session p c session)]
         (println "Complaints after associating complaint with session" complaints)
-        (pms-mongo/update-patient "patients" (:id session) (assoc p :complaints (associate-complaint-with-session p c session)))))
-    {:body (strip-ids p)}))
+        {:body (strip-ids (pms-mongo/update-patient "patients" (:id session) (assoc p :complaints (associate-complaint-with-session p c session))))}))))

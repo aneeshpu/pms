@@ -45,7 +45,8 @@
 
 (defn update-patient [documents id patient]
   (connect-db)
-  (monger-coll/update documents {:id (ObjectId. id)} patient))
+  (monger-coll/update documents {:id (ObjectId. id)} patient)
+  patient)
 
 (defn get-patients [index]
   (connect-db)
