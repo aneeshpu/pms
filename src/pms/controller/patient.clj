@@ -31,12 +31,11 @@
 
 (defn new-patient
   [params]
-  (println "inside new-patient with params")
-  (println params)
+  (println "inside new-patient with params" params)
   (validate-patient params)
-  {:body
-   (replace-object-id-with-string
-     (save-patient :name (:name params) :age (:age params) :address (:address params)))})
+  (->> (save-patient :name (:name params) :age (:age params) :address (:address params))
+      replace-object-id-with-string
+      (hash-map :body)))
 
 (defn strip-ids
   [patient]
@@ -84,4 +83,8 @@
       (println "------------->Found-complaint:" c)
       (let [complaints (associate-complaint-with-session p c session)]
         (println "Complaints after associating complaint with session" complaints)
-        {:body (strip-ids (pms-mongo/update-patient "patients" (:id session) (assoc p :complaints (associate-complaint-with-session p c session))))}))))
+        (->> (associate-complaint-with-session p c session)
+             (assoc p :complaints)
+             (pms-mongo/update-patient "patients" (:id session))
+             strip-ids
+             (hash-map :body)))))) 
