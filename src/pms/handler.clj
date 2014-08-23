@@ -3,6 +3,7 @@
 
   (:require [compojure.handler :as handler]
             [compojure.route :as route]
+            [pms.middleware :as pms-middleware]
             [ring.util.response :as response]
             [pms.controller.patient :as p-cont]
             [cemerick.friend :as friend]
@@ -22,40 +23,6 @@
   (route/resources "/")
   (route/not-found "Not Found"))
 
-(defn handle-exception
-  [handler]
-  (fn [request]
-    (try (let [res (handler request)]
-           res)
-      (catch IllegalArgumentException e
-        {:body {:message (.getMessage e)}
-         :status 500}
-        ))))
-
-(defn- remove-id-from-body
-  [body]
-  (map #(dissoc (assoc % :id (.toString (:id %))) :_id) body))
-
-(defn- remove-id-from-response
-  [res]
-  (->> (:body res)
-       (remove-id-from-body)
-       (assoc res :body)))
-
-(defn- has-response?
-  [res]
-  (and ((complement nil?) res) 
-       (map? res) 
-       (seq? (:body res))))
-
-(defn remove-object-id 
-  [handler]
-  (fn [request]
-    (let [res (handler request)]
-      (if (has-response? res) 
-        (remove-id-from-response res) 
-        res))))
-
 
 (def users {"root" {:username "root"
                     :password (creds/hash-bcrypt "admin_password")
@@ -69,7 +36,7 @@
   (->
     (handler/site (friend/authenticate app-routes {:credential-fn (partial creds/bcrypt-credential-fn users)
                                                    :workflows [(workflows/interactive-form)]}))
-    (remove-object-id)
+    (pms-middleware/remove-object-id)
     (middleware/wrap-json-params)
-    (handle-exception)
+    (pms-middleware/handle-exception)
     (middleware/wrap-json-response)))
