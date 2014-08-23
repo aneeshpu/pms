@@ -32,13 +32,30 @@
          :status 500}
         ))))
 
-(defn remove-object-id [handler]
+(defn- remove-id-from-body
+  [body]
+  (map #(dissoc (assoc % :id (.toString (:id %))) :_id) body))
+
+(defn- remove-id-from-response
+  [res]
+  (->> (:body res)
+       (remove-id-from-body)
+       (assoc res :body)))
+
+(defn- has-response?
+  [res]
+  (and ((complement nil?) res) 
+       (map? res) 
+       (seq? (:body res))))
+
+(defn remove-object-id 
+  [handler]
   (fn [request]
     (let [res (handler request)]
-      (println "is this working at all " res)
-      (if (and ((complement nil?) res) (map? res) (seq? (:body res)))
-        (assoc res :body (map #(dissoc (assoc % :id (.toString (:id %))) :_id) (:body res)))
+      (if (has-response? res) 
+        (remove-id-from-response res) 
         res))))
+
 
 (def users {"root" {:username "root"
                     :password (creds/hash-bcrypt "admin_password")
