@@ -64,9 +64,9 @@
     :sessions (conj (:sessions complaint) {:date (java.util.Date.) :diagnosis (:diagnosis session) :medicine (:medicine session)})))
 
 (defn associate-complaint-with-session [p complaint session]
-  (let [c (add-session-to-complaint complaint session)]
-    (println "complaint after adding session" c)
-    (assoc (:complaints p) (keyword (:id complaint)) (add-session-to-complaint complaint session))))
+    (->> (add-session-to-complaint complaint session)
+         (assoc (:complaints p) (keyword (:id complaint)))))
+;    (assoc (:complaints p) (keyword (:id complaint)) (add-session-to-complaint complaint session)))
 
 (defn validate-session [session]
   (println (or (nil? (:diagnosis session)) (nil? (:medicine session))))
