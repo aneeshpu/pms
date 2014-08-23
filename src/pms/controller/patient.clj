@@ -58,10 +58,10 @@
   {:body (let [res (pms-mongo/update "patients" (:id complaint) (:complaint complaint))]
            (replace-object-id-with-string (:complaint res)))})
 
-   (defn add-session-to-complaint [complaint session]
-  (assoc
-    complaint
-    :sessions (conj (:sessions complaint) {:date (java.util.Date.) :diagnosis (:diagnosis session) :medicine (:medicine session)})))
+(defn add-session-to-complaint [complaint session]
+  (->> {:date (java.util.Date.) :diagnosis (:diagnosis session) :medicine (:medicine session)}
+       (conj (:sessions complaint))
+       (assoc complaint :sessions)))
 
 (defn associate-complaint-with-session [p complaint session]
     (->> (add-session-to-complaint complaint session)
