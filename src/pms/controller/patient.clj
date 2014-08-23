@@ -13,7 +13,6 @@
 
 (defn save-patient
   [& {:keys [name age address]}]
-  (println "saving patient with name " name " and age " age)
   (patient/save :name name :age age :address address))
 
 (defn replace-object-id-with-string
@@ -43,9 +42,7 @@
 
 (defn retrieve-patient
   [name]
-  (println "get-patient " name)
   (let [patients (patient/retrieve name)]
-    (println "------------>Inside get-patient with .toString. Found patients " patients)
     {:body (map replace-object-id-with-string patients)}))
 
 (defn validate-complaint [params]
@@ -55,18 +52,22 @@
 (defn add-problem
   [complaint]
   (validate-complaint complaint)
-  {:body (let [res (pms-mongo/update "patients" (:id complaint) (:complaint complaint))]
-           (replace-object-id-with-string (:complaint res)))})
+  (->> (pms-mongo/update "patients" (:id complaint) (:complaint complaint))
+       :complaint
+       replace-object-id-with-string
+       (hash-map :body)))
 
-(defn add-session-to-complaint [complaint session]
+(defn add-session-to-complaint 
+  [complaint session]
+
   (->> {:date (java.util.Date.) :diagnosis (:diagnosis session) :medicine (:medicine session)}
        (conj (:sessions complaint))
        (assoc complaint :sessions)))
 
-(defn associate-complaint-with-session [p complaint session]
+(defn associate-complaint-with-session 
+  [p complaint session]
     (->> (add-session-to-complaint complaint session)
          (assoc (:complaints p) (keyword (:id complaint)))))
-;    (assoc (:complaints p) (keyword (:id complaint)) (add-session-to-complaint complaint session)))
 
 (defn validate-session [session]
   (println (or (nil? (:diagnosis session)) (nil? (:medicine session))))
@@ -75,16 +76,11 @@
 
 (defn add-session
   [session]
-  (println "------------------------------params" session)
-  (println "add-session with patient-id " (:id session) ", complaint-id " (:complaint-id session) ", diagnosis" (:diagnosis session) ", medicine:" (:medicine session))
   (validate-session session)
   (let [p (pms-mongo/get-patient-by-id "patients" (:id session))]
     (let [c (patient/find-complaint (:complaint-id session) p)]
-      (println "------------->Found-complaint:" c)
-      (let [complaints (associate-complaint-with-session p c session)]
-        (println "Complaints after associating complaint with session" complaints)
         (->> (associate-complaint-with-session p c session)
              (assoc p :complaints)
              (pms-mongo/update-patient "patients" (:id session))
              strip-ids
-             (hash-map :body)))))) 
+             (hash-map :body)))))
