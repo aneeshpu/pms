@@ -13,16 +13,16 @@
 
 (defn get-next-patient-id
   []
-  (monger-coll/find-and-modify "counters" {} {:$inc {:seq 1}} :return-new true))
+  (->> (monger-coll/find-and-modify "counters" {} {:$inc {:seq 1}} :return-new true)
+       (:seq)))
 
 (defn- new-patient
   [patient]
   (-> (assoc patient :id (ObjectId.))
-      (assoc :pid (:seq (get-next-patient-id)))))
+      (assoc :pid (get-next-patient-id))))
 
 (defn insert
   [documents & rest]
-    (println "-----------inside the brand new insert" rest)
     (let [p (new-patient (apply hash-map rest))]
       (println "this is p" p)
       (monger-coll/insert documents p)
