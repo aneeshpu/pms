@@ -55,6 +55,9 @@ pms.config(['$routeProvider', function ($routeProvider) {
             templateUrl: 'partials/session-saved.html',
             controller: 'NewPatientCtrl'
 
+        }).when('/viewSessionDetails',{
+            templateUrl: 'partials/viewSession-details.html',
+            controller: 'NewPatientCtrl'
         }).when('/allpatients',{
             templateUrl: 'partials/all-patients.html',
             controller: 'NewPatientCtrl'
@@ -164,4 +167,7 @@ pms.controller('NewPatientCtrl', function ($scope, $http, patientService, $locat
         $scope.getPatients($scope.searchIndex);
     }
 
+    $scope.viewSessionDetails = function(patient){
+        $location.path("viewSessionDetails");
+    }
 });
