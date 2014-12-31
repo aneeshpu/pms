@@ -17,6 +17,13 @@ pms.factory('patientService', function () {
 
         getCurrentComplaint: function () {
             return this.complaint;
+        },
+        
+        saveCurrentSession: function(session){
+            this.currentSession = session;
+        },
+        getCurrentSession: function() {
+            return this.currentSession;
         }
 
     }
@@ -167,7 +174,13 @@ pms.controller('NewPatientCtrl', function ($scope, $http, patientService, $locat
         $scope.getPatients($scope.searchIndex);
     }
 
-    $scope.viewSessionDetails = function(patient){
+    $scope.viewSessionDetails = function(patient, currentSession){
+        patientService.saveCurrentPatient(patient);
+        patientService.saveCurrentSession(currentSession);
         $location.path("viewSessionDetails");
+    }
+
+    $scope.getCurrentSession = function() {
+        return patientService.getCurrentSession();
     }
 });

@@ -42,3 +42,19 @@
 .input-group-padding{
     padding-bottom: 10px;
 }
+
+.pres{
+    font-size: 20px;
+}
+
+.name{
+    font-size: 30px;
+}
+.pres-name {
+    float:left;
+    font-size: 30px;
+}
+
+.pres-diag {
+    clear: left;
+}
