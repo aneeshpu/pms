@@ -1,8 +1,9 @@
 <div>
-    <div>
+    <div class="pres-head">
         <span class="name">{{currentPatient.name}}</span>
         <span>({{currentPatient.age}})</span>
     </div>
     <hr/>
-    <p class="pres">{{getCurrentSession().medicine}}</p>
+    <p class="pres pres-diag">{{getCurrentSession().diagnosis}}</p>
+    <p class="pres pres-med">{{getCurrentSession().medicine}}</p>
 </div>

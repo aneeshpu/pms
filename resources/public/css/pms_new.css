@@ -57,4 +57,12 @@
 
 .pres-diag {
     clear: left;
+    font-size: 25px;
+}
+
+.pres-head {
+    margin-top: 40px;
+}
+.pres-med {
+    font-size: 18px;
 }
