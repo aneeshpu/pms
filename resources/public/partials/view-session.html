@@ -20,10 +20,11 @@
         </tr>
 
         <tr ng-repeat="session in currentComplaint.sessions">
-            <td class="session-cell">{{session.date}}</td>
+            <td class="session-cell">
+                <a href="" ng-click="viewSessionDetails(currentPatient, session)">{{session.date}}</a>
+            </td>
             <td class="session-cell">{{session.diagnosis}}</td>
             <td class="session-cell"> {{session.medicine}}</td>
-            <td class="session-cell"><a href="" ng-click="viewSessionDetails(currentPatient, session)">view session</a></td>
         </tr>
 
     </table>
