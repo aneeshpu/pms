@@ -5,5 +5,7 @@
     </div>
     <hr/>
     <p class="pres pres-diag">{{getCurrentSession().diagnosis}}</p>
-    <p class="pres pres-med">{{getCurrentSession().medicine}}</p>
+    <ul>
+     <li ng-repeat="med in getCurrentSession().medicine.split(',')" class="pres pres-med">{{med}}</li>
+    </ul>
 </div>

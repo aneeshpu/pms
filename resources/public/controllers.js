@@ -110,14 +110,30 @@ pms.controller('NewPatientCtrl', function ($scope, $http, patientService, $locat
             });
     }
 
+    var collectMedicines = function(medicines){
+        var medicineNames = [];
+        for(var i=0;i<medicines.length;i++){
+            medicineNames.push(medicines[i].value);
+        }
+
+        return medicineNames;
+    }
+
     $scope.addSession = function () {
-        $http.post("patients/" + patientService.getCurrentPatient().id + "/cases/" + $scope.currentComplaint.id, {diagnosis: $scope.diagnosis, medicine: $scope.medicine})
+        var medicineNames = collectMedicines($scope.medicine);
+        console.log("medicine names:" + medicineNames);
+
+        $http.post("patients/" + patientService.getCurrentPatient().id + "/cases/" + $scope.currentComplaint.id, {diagnosis: $scope.diagnosis, medicine: medicineNames.join()})
             .success(function (data) {
                 patientService.saveCurrentPatient(data);
                 $location.path("viewPatient");
             }).error(function (data) {
                 $scope.errMsg = data.message;
             });
+    }
+
+    $scope.addMedicine = function(){
+        $scope.medicine.push({"medicine":"Name", "value":""});
     }
 
     $scope.viewSession = function (patient, complaint) {
@@ -139,6 +155,7 @@ pms.controller('NewPatientCtrl', function ($scope, $http, patientService, $locat
     $scope.initComplaint = function () {
         $scope.currentComplaint = patientService.getCurrentComplaint();
         $scope.currentPatient = patientService.getCurrentPatient();
+        $scope.medicine = [{"medicine":"Name", "value":""}];
     }
 
     $scope.getPatients  = function(index){

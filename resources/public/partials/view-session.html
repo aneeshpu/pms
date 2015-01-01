@@ -30,15 +30,15 @@
     </table>
 
     <p>
-        <input class="data-input" placeholder="Medicine Prescribed" type="text" ng-model="medicine"/>
+        <input class="data-input" placeholder="Diagnosis" type="text" ng-model="diagnosis"></input>
     </p>
 
     <p>
-        <textarea class="data-input tall-input" placeholder="Diagnosis" type="text" ng-model="diagnosis"></textarea>
+        <input ng-repeat="med in medicine" class="data-input" placeholder="Medicine Prescribed" type="text" ng-model="med.value"/>
     </p>
 
-
     <a class="btn btn-primary" href="" ng-click="addSession()">Save Session</a>
+    <a class="btn btn-primary" href="" ng-click="addMedicine()">Add medicine</a>
 
     <div class="error-msg">
         <span>{{errMsg}}</span>
