@@ -7,6 +7,6 @@
     <p class="pres pres-diag">{{getCurrentSession().complaint.complaint}}</p>
     <p class="pres pres-diag">{{getCurrentSession().session.diagnosis}}</p>
     <ul>
-     <li ng-repeat="med in getCurrentSession().medicine.split(',')" class="pres pres-med">{{med}}</li>
+     <li ng-repeat="med in getCurrentSession().session.medicine.split(',')" class="pres pres-med">{{med}}</li>
     </ul>
 </div>
