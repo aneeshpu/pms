@@ -21,7 +21,7 @@
 
         <tr ng-repeat="session in currentComplaint.sessions">
             <td class="session-cell">
-                <a href="" ng-click="viewSessionDetails(currentPatient, session)">{{session.date}}</a>
+                <a href="" ng-click="viewSessionDetails(currentPatient, session, currentComplaint)">{{session.date}}</a>
             </td>
             <td class="session-cell">{{session.diagnosis}}</td>
             <td class="session-cell"> {{session.medicine}}</td>
@@ -33,8 +33,8 @@
         <input class="data-input" placeholder="Diagnosis" type="text" ng-model="diagnosis"></input>
     </p>
 
-    <p>
-        <input ng-repeat="med in medicine" class="data-input" placeholder="Medicine Prescribed" type="text" ng-model="med.value"/>
+    <p ng-repeat="med in medicine">
+        <input class="data-input" placeholder="Medicine Prescribed" type="text" ng-model="med.value"/>
     </p>
 
     <a class="btn btn-primary" href="" ng-click="addSession()">Save Session</a>
