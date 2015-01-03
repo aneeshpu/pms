@@ -78,6 +78,11 @@ pms.config(['$routeProvider', function ($routeProvider) {
 
 pms.controller('NewPatientCtrl', function ($scope, $http, patientService, $location) {
 
+    $scope.formatDate = function(isoDate){
+        var formattedDate = new Date(isoDate);
+        return formattedDate.toLocaleDateString() + " " + formattedDate.toLocaleTimeString();
+    }
+
     $scope.createPatient = function () {
 
         $http.post("patients", {name: $scope.name, age: $scope.age, problem: $scope.problem, address: $scope.address})

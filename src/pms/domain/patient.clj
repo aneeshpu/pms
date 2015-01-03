@@ -18,7 +18,6 @@
 (defn find-complaint
   "Finds a complaint that matches complaint-id"
   [complaint-id patient]
-  (println "------------>pms.domain.patient/find-complaint" complaint-id patient)
   (get (:complaints patient) (keyword complaint-id)))
 
 

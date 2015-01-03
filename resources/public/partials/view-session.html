@@ -9,7 +9,7 @@
 
         <tr ng-repeat="session in currentComplaint.sessions">
             <td>
-                <a href="" ng-click="viewSessionDetails(currentPatient, session, currentComplaint)">{{session.date}}</a>
+                <a href="" ng-click="viewSessionDetails(currentPatient, session, currentComplaint)">{{formatDate(session.date)}}</a>
             </td>
             <td>{{session.diagnosis}}</td>
             <td> {{session.medicine}}</td>
