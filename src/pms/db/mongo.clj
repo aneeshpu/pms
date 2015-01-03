@@ -1,7 +1,8 @@
 (ns pms.db.mongo
   (:require [monger.core :as monger]
             [monger.collection :as monger-coll]
-            [monger.query :as monger-q])
+            [monger.query :as monger-q]
+            [monger.operators :refer :all])
   (:import [org.bson.types ObjectId]))
 
 (defn connect-db
@@ -25,7 +26,7 @@
 (defn get-patient-by-name
   "Retrieves a sequence of patients by name"
   [documents name]
-  (monger-coll/find-maps documents {:name name}))
+  (monger-coll/find-maps documents {:name {$regex name $options "i"}}))
 
 (defn update [documents id complaint]
   "Updates the complaints array of a patient"
