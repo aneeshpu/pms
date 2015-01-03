@@ -1,33 +1,25 @@
-<h2>Add Session</h2>
 <div ng-init="initComplaint()">
-    <p>
-        Name:{{currentPatient.name}}
-    </p>
+    <div class="pres-head">
+        <span class="name">{{currentPatient.name}}</span>
+        <span>({{currentPatient.age}})</span>
+    </div>
+    <p class="pres pres-diag">{{currentComplaint.complaint}}</p>
 
-    <p>
-        Age:{{currentPatient.age}}
-    </p>
+    <h2>Previous Sessions</h2>
 
-    <p>
-        Complaint:{{currentComplaint.complaint}}
-    </p>
-
-    <table class="sessions-table">
-        <tr>
-            <th class="session-cell session-header">date</th>
-            <th class="session-cell session-header">diagnosis</th>
-            <th class="session-cell session-header">medicine</th>
-        </tr>
+    <table class="table table-striped">
 
         <tr ng-repeat="session in currentComplaint.sessions">
-            <td class="session-cell">
+            <td>
                 <a href="" ng-click="viewSessionDetails(currentPatient, session, currentComplaint)">{{session.date}}</a>
             </td>
-            <td class="session-cell">{{session.diagnosis}}</td>
-            <td class="session-cell"> {{session.medicine}}</td>
+            <td>{{session.diagnosis}}</td>
+            <td> {{session.medicine}}</td>
         </tr>
 
     </table>
+
+    <h2>New Session</h2>
 
     <p>
         <input class="data-input" placeholder="Diagnosis" type="text" ng-model="diagnosis"></input>
