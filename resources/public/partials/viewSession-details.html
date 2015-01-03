@@ -2,10 +2,17 @@
     <div class="pres-head">
         <span class="name">{{currentPatient.name}}</span>
         <span>({{currentPatient.age}})</span>
+        <span class="pres-date">{{formatDate(getCurrentSession().session.date)}}</span>
     </div>
+    <p class="pres pres-diag">Complaint: 
+      <span class="pres pres-med">{{getCurrentSession().complaint.complaint}}</span>
+    </p>
     <hr/>
-    <p class="pres pres-diag">{{getCurrentSession().complaint.complaint}}</p>
-    <p class="pres pres-diag">{{getCurrentSession().session.diagnosis}}</p>
+    <p> 
+    <p class="pres pres-diag">Diagnosis: 
+         <span class="pres pres-med">{{getCurrentSession().session.diagnosis}}</span>
+    </p>
+   </p>
     <ul>
      <li ng-repeat="med in getCurrentSession().session.medicine.split(',')" class="pres pres-med">{{med}}</li>
     </ul>

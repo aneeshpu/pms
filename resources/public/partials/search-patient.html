@@ -2,7 +2,6 @@
     <table class="table table-striped" ng-init="getCurrentPatient()">
         <tr ng-repeat="patient in patients">
             <td> <a href="" ng-click="viewPatient(patient)">{{patient.name}}</a> </td>
-            <td><span>{{patient.id}}</span></td>
             <td><span>{{patient.age}}</span></td>
             <td><span>{{patient.address}}</span></td>
         </tr>
