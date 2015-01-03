@@ -3,13 +3,11 @@
         <tr>
             <th>Name</th>
             <th>Age</th>
-            <th>Id</th>
             <th>Address</th>
         </tr>
         <tr ng-repeat="patient in patients">
             <td><a href="" ng-click="viewPatient(patient)">{{patient.name}}</a></td>
             <td><span>{{patient.age}}</span></td>
-            <td><span>{{patient.id}}</span></td>
             <td><span>{{patient.address}}</span></td>
         </tr>
     </table>
