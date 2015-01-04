@@ -1,21 +1,15 @@
-<h2> Patient Details</h2>
-<div ng-init="getCurrentPatient()">
-    <p>
-        Name: {{patient.name}}
-    </p>
+<div>
+    <div class="pres-head">
+        <span class="name">{{getCurrentPatient().name}}</span>
+        <span>({{getCurrentPatient().age}})</span>
+        <p>{{getCurrentPatient().address}}</p>
+    </div>
 
-    <p>
-        Age: {{patient.age}}
-    </p>
-
-    <p>
-        Address: {{patient.address}}
-    </p>
-
-    <h3>Complaints</h3>
-    <li ng-repeat="complaint in patient.complaints">
-        <a href="" ng-click="viewSession(patient, complaint)">{{complaint.complaint}}</a>
-    </li>
+    <ul class="list-unstyled">
+        <li ng-repeat="complaint in patient.complaints">
+         <a href="" ng-click="viewSession(patient, complaint)">{{complaint.complaint}}</a>
+        </li>
+    </ul>
 
     <a class="btn btn-primary" href="#/addCase">New Complaint</a>
 

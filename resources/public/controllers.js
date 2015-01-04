@@ -156,6 +156,7 @@ pms.controller('NewPatientCtrl', function ($scope, $http, patientService, $locat
 
     $scope.getCurrentPatient = function () {
         $scope.patient = patientService.getCurrentPatient();
+        return patientService.getCurrentPatient();
     }
 
     $scope.initComplaint = function () {
